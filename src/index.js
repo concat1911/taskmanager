@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import TaskListContext from './context/';
 import TasksReducer from './reducers/';
 
+//Components
+import TaskList from './components/TaskList';
+
 const App = () => {
 
     const initTasks = useContext(TaskListContext);
@@ -11,11 +14,20 @@ const App = () => {
     const [state, dispatch] = useReducer(TasksReducer, initTasks);
 
     return (
-        <TaskListContext value={{state, dispatch}}> 
-            <div class="ui container">
-                <h1 class="ui header">Tasks Manager</h1>
+        <TaskListContext.Provider value={{state, dispatch}}> 
+            <div className="ui container">
+                <div className="mt-3">
+                    <h1 className="word">TASKS MANAGER v.0.2 <a href="http://nhatlinh.de" className="ui small circular left floated image"><img src="image/Melancholie_logo.png" alt="melancholie the lab luckentext maker"/></a></h1>
+                    <h3 className="ui header">Hi</h3>
+                </div>
             </div>
-        </TaskListContext>
+
+            <div className="ui horizontal divider"></div>
+
+            <div className="ui container">
+                <TaskList />
+            </div>
+        </TaskListContext.Provider>
     );
 }
 
