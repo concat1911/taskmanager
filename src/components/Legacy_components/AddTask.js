@@ -30,16 +30,16 @@ class AddTask extends Component {
     
     render(){
         return (
-            <form className="ui form" onSubmit={this.onFormSubmit} >
+            <form className="ui form" >
                 <div className="fields">
                     <div className="four wide field">
-                        <input name="taskName" type="text" placeholder="Task Name" onChange={this.onInputChange} value={this.state.taskName}/>
+                        <input name="taskName" type="text" placeholder="Task Name" onChange={} value={}/>
                     </div>
                     <div className="six wide field">
-                        <input name="taskDescription" type="text" placeholder="Description" onChange={this.onInputChange} value={this.state.taskDescription}/>
+                        <input name="taskDescription" type="text" placeholder="Description" onChange={} value={}/>
                     </div>
                     <div className="field">
-                        <select name="level" className="ui dropdown" onChange={this.onInputChange} value={this.state.level}>
+                        <select name="level" className="ui dropdown" onChange={} value={}>
                             <option value="0">low</option>
                             <option value="1">medium</option>
                             <option value="2">high</option>

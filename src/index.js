@@ -6,6 +6,7 @@ import TasksReducer from './reducers/';
 
 //Components
 import TaskList from './components/TaskList';
+import TaskAdding from './components/TaskAdding';
 
 const App = () => {
 
@@ -22,9 +23,12 @@ const App = () => {
                 </div>
             </div>
 
+
+
             <div className="ui horizontal divider"></div>
 
             <div className="ui container">
+                <TaskAdding />
                 <TaskList />
             </div>
         </TaskListContext.Provider>

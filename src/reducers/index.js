@@ -8,6 +8,14 @@ export default function TasksReducer(state, action) {
                 ...state,
                 tasks: toggleStatus
             }
+
+        case "REMOVE_TASK":
+            const newTaskList = state.tasks.filter(task => task.id !== action.payload.id);
+            return{
+                ...state,
+                tasks: newTaskList
+            };
+            
         default:
             return state;
     }
