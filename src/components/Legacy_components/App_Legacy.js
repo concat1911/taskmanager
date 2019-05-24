@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useReducer} from 'react';
 import {filter, includes, orderBy, remove} from 'lodash';
+
+//User
+import {UserContext} from '../../index';
 
 // import Search from '../containers/Search';
 // import Filter from '../containers/Filter';
@@ -16,7 +19,7 @@ export default function App (props) {
     //     sortDir: 'asc',
     // }
 
-
+    const username = useContext(UserContext);
 
     //Load localstorage
     // componentWillMount(){
@@ -137,7 +140,7 @@ export default function App (props) {
             <div className="row">
                 <div className="mt-3">
                     <h1 className="word">TASKS MANAGER v.0.2 <a href="http://nhatlinh.de" className="ui small circular left floated image"><img src="image/Melancholie_logo.png" alt="melancholie the lab luckentext maker"/></a></h1>
-                    <h2 className="ui header">Hi {props.username}</h2>
+                    <h2 className="ui header">Hi, {username}</h2>
                 </div>
             </div>
 
