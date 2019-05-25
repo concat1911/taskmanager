@@ -5,8 +5,9 @@ import { Modal } from 'semantic-ui-react';
 export default function TaskList(){
 
     const {state, dispatch} = useContext(TasksContext);
-    
+
     //EDITOR MODAL
+    const [idEdited, SetIdEdited] = useState(0);
     const [nameEditor, SetNameEditor] = useState("");
     const [descripEditor, SetDescripEditor] = useState("");
     const [levelEditor, SetLevelEditor] = useState(0);
@@ -14,10 +15,20 @@ export default function TaskList(){
     const [modalOpen, ToggleModal] = useState(false);
 
     const OnModalOpen = task => {
+        SetIdEdited(task.id);
         SetNameEditor(task.name);
         SetDescripEditor(task.description);
         SetLevelEditor(task.level);
         ToggleModal(true);
+    }
+
+    const OnEditorFormSubmit = (event) => {
+        event.preventDefault();
+
+        const editedTask = {id: idEdited, name: nameEditor, description: descripEditor, level: levelEditor};
+
+        dispatch({type: "TASK_EDIT", payload: editedTask});
+        ToggleModal(false);
     }
 
     return(
@@ -34,35 +45,42 @@ export default function TaskList(){
                         </div>
                         <div className="extra content">
                             <button className="ui button" onClick={() => OnModalOpen(task)}>Edit</button>
-                            <button className="ui button" onClick={() => dispatch({type: "REMOVE_TASK", payload: task})}>Remove</button>
+                            <button className="ui button" onClick={() => dispatch({type: "TASK_REMOVE", payload: task})}>Remove</button>
                         </div>
 
                         {/* MODAL */}
-                        <Modal open={modalOpen} onClose={() => ToggleModal(false)}>
+                        <Modal open={modalOpen} onClose={() => ToggleModal(false)} >
                             <Modal.Header>Edit Task</Modal.Header>
                             <Modal.Content image>
                                 <Modal.Description>
-                                    <form className="ui form">
+                                    <form className="ui form" onSubmit={(event) => OnEditorFormSubmit(event)}>
                                         <div className="fields">
                                             <div className="four wide field">
-                                                <input name="editName" type="text" placeholder="Task Name" value={nameEditor}/>
+                                                <input 
+                                                    name="editName" 
+                                                    type="text" 
+                                                    placeholder="Task Name" 
+                                                    value={nameEditor}
+                                                    onChange={event => SetNameEditor(event.target.value)}
+                                                />
                                             </div>
                                             <div className="six wide field">
                                                 <input 
                                                     name="editDescription" 
                                                     type="text" 
                                                     placeholder="Description" 
-                                                    value={descripEditor} 
+                                                    value={descripEditor}
+                                                    onChange={event => SetDescripEditor(event.target.value)}
                                             />
                                             </div>
                                             <div className="field">
-                                                <select name="editLevel" className="ui dropdown" value={levelEditor}>
+                                                <select name="editLevel" className="ui dropdown" value={levelEditor} onChange={event => SetLevelEditor(event.target.value)}>
                                                     <option value="0">low</option>
                                                     <option value="1">medium</option>
                                                     <option value="2">high</option>
                                                 </select>
                                             </div>
-                                            <button className="ui button" type="submit"><i className="add icon"></i>Change</button>
+                                            <button className="ui button" type="submit"><i className="setting icon"></i>Change</button>
                                         </div>
                                     </form>
                                 </Modal.Description>

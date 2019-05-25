@@ -16,6 +16,22 @@ export default function TasksReducer(state, action) {
                 ...state,
                 tasks: taskAdding
             }
+        
+        case "TASK_EDIT":
+            const updateTaskIndex = state.tasks.findIndex(
+                t => t.id === action.payload.id
+            )
+            
+            const updatedTasks = [
+                ...state.tasks.slice(0, updateTaskIndex),
+                action.payload, 
+                ...state.tasks.slice(updateTaskIndex + 1)
+            ]
+            
+            return {
+                ...state,
+                tasks: updatedTasks
+            }
 
         case "TOGGLE_STATUS":
             const toggleStatus = state.tasks.map(task => 
@@ -26,7 +42,7 @@ export default function TasksReducer(state, action) {
                 tasks: toggleStatus
             }
 
-        case "REMOVE_TASK":
+        case "TASK_REMOVE":
             const newTaskList = state.tasks.filter(task => task.id !== action.payload.id);
             return{
                 ...state,
