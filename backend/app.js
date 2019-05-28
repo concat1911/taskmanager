@@ -1,27 +1,17 @@
 const express = require('express');
 
-const app = express();
+//GOOGLE LOGIN OAUTH STRATEGY
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-//Middleware: How it works
-// app.use(function(req, res, next){
-//     req.name = "Linh Tinh";
-//     next();
-// });
+const app = express();
+passport.use(new GoogleStrategy());
 
 //Index Route
 app.get('/', (req, res) => {
-    res.send({index: 'Welcome'});
+    res.send({homepage: ''});
 })
 
-//About
-app.get('/about', (req, res) => {
-    res.send('About');
-})
-
-
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{
     console.log(`Server is running on port ${PORT}`);
 });
-
-//App Request: post, get, delete, patch, put
