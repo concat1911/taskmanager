@@ -18,17 +18,15 @@ const App = () => {
         <TaskListContext.Provider value={{state, dispatch}}> 
             <div className="ui container">
                 <div className="mt-3">
-                    <h1 className="word">TASKS MANAGER v.0.2 <a href="http://nhatlinh.de" className="ui small circular left floated image"><img src="image/Melancholie_logo.png" alt="melancholie the lab luckentext maker"/></a></h1>
-                    <h3 className="ui header">Hi</h3>
+                    {/* <h1 className="word">TASKS MANAGER v.0.2 <a href="http://nhatlinh.de" className="ui small circular left floated image"><img src="image/Melancholie_logo.png" alt="melancholie the lab luckentext maker"/></a></h1> */}
                 </div>
             </div>
 
 
 
-            <div className="ui horizontal divider"></div>
-
             <div className="ui container">
                 <TaskAdding />
+                <div className="ui horizontal divider"><div className="ui red header">REMAINNING TASKS</div></div>
                 <TaskList />
             </div>
         </TaskListContext.Provider>
