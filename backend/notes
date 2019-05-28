@@ -1,1 +1,32 @@
 //App Request: post, get, delete, patch, put
+
+//Deploy checklist
+First time:
+    Create Heroku acc
+        Commit codebase to git
+            Install Heroku CLI and Create App
+                Deploy App with git
+                    Heroku deploys projects
+
+Subsequent deploys
+    Commit cobase to git
+        Deploy App with Git
+
+//HEROKU NOTES
+//FIRST TIME
+check version:  heroku -v
+login:          heroku login
+
+create new:     heroku create     
+add git repo:   git remote add heroku https://git.heroku.com/morning-fjord-46167.git
+(#link up there is just an example)
+
+Deploy:         git push heroku master
+Open Server:    heroku open
+View Log:       heroku logs
+
+//Subsequent
+check status:   git status
+add         :   git add
+commit      :   git commit -m "this this description are for the commit, you must add something useful. It is possible to leave empty space"
+push        :   git push heroku master
