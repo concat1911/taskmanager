@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
-const connectURL = 'mongodb+srv://linh:onlyme2511@cluster-eb3gs.mongodb.net/test?retryWrites=true&w=majority';
+const {mongoURL} = require('../secrets');
+
 mongoose.connect(
-    connectURL,
+    // process.env.MONGGO_DB_URL ? process.env.MONGGO_DB_URL : connectURL,
+    mongoURL,
     {
         useNewUrlParser: true,
-        useCreateIndex: true    
+        useCreateIndex: true,
     }
 ).then(res => {
     console.log("DATABASE CONNECTED")
 }).catch(err => {
     console.log(err)
 })
-
-
-// const me = new USER({name: 'linh', email: 'nhatlinhtr95@'})
-// me.save().then(res => console.log("new user: " + me)).catch(err => console.log(err))

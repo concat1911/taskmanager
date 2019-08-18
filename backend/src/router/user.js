@@ -4,13 +4,14 @@ const USER = require('../db/models/user');
 const auth = require('../middleware/auth');
 const multer = require('multer')
 const sharp = require('sharp')
-
+const {sendWelcome, sendGoodbye} = require('../emails/emailsender')
 //===============================AUTHENTICATION===============================
 //CREATE NEW USER
 router.post('/auth/register', async (req, res) => {
     const user = new USER(req.body);
     try{
         await user.save()
+        sendWelcome(user.email, user.name)
         const token = await user.generateAuthToken()
         res.status(201).send({user, token})
     }catch(err){
@@ -137,6 +138,7 @@ router.delete('/user/avatar', auth, async(req, res) => {
 router.delete('/user/deleteme', auth, async (req, res) => {
     try {
         await req.user.remove()
+        sendGoodbye(req.user.email, req.user.name)
         res.send(req.user)
     } catch (error) {
         return res.status(500).send(error);   
